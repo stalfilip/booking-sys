@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Din Hemsida</title>
+    <link rel="stylesheet" href="{% static 'css/stylesHP.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>Mitt företag</h1>
+                <ul>
+                    <li><a href="#">Hem</a></li>
+                    <li><a href="{% url 'say_hello' %}">Om oss</a></li>
+                    <li><a href="#">Tjänster</a></li>
+                    <li><a href="{% url 'customers_view' %}">Kunder</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Välkommen till vår hemsida!</h2>
+            <p>Här kan du lära känna oss bättre och se vad vi kan erbjuda.</p>
+            <a href="#" class="cta-button">Läs mer</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Mitt företag. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

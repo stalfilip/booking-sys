@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Din hemsida</title>
+
+    <!-- Länk till din CSS-fil -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+
+<body>
+
+    <div class="content-wrapper">
+        <h1>Välkommen till min hemsida</h1>
+        <h2>Utforska min digitala lekplats</h2>
+        <p>Detta är en introduktion till min webbplats, där jag kommer att dela intressanta projekt, idéer och kanske några tutorials.</p>
+        <a href="#" class="explore-button">Utforska mer</a>
+    </div>
+
+    <!-- Länk till din JavaScript-fil -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+
+</html>
