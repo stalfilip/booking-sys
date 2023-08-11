@@ -10,3 +10,10 @@ Jag rekommender att kolla hela, och sedan också ladda ner DeBug programmet som 
 När man kan det kan det vara lämpligt att läsa på lite om HTML och JS och likande. Resten går att köra genom GPT vilket
 löser typ alla problem. 
 
+Uttöver det måste du ha en fungerande MySQL server körandes på port: 3306 (localhost) med en databas som heter 'bookings' och en användare som heter 'ErkFil' med lösenord 'ErkFil'.
+
+När du har det och du ser att den fungerar vill du migrera databasen med: 'python manage.py migrate' och sedan köra 'python manage.py runserver' för att starta servern och 
+samtidigt skapa korrekt  tables i databasen. För att lägga till lite sampledata kan du köra 'source Populate.sql' när du är inloggad i MySQL servern och har bookings databasen vald.
+
+
+
