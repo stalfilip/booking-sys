@@ -16,9 +16,5 @@ När du har det och du ser att den fungerar vill du migrera databasen med: 'pyth
 <<<<<<< HEAD
 samtidigt skapa korrekt  tables i databasen. För att lägga till lite sampledata kan du köra 'source Populate.sql' när du är inloggad i MySQL servern och har bookings databasen vald.
 
-=======
-samtidigt skapa korrekt  tables i databasen. Sedan kan du köra ett insert script s(fråga GPT) för att få in lite test data. Sedab borde du få 
-upp en lista med alla kunder om du klickar på knappen kunder på hemsidans Home page.
->>>>>>> edc8ff8d4a8e2c693cf63e130ecd36bcf7611009
 
 
