@@ -8,8 +8,12 @@ django = "*"
 django-debug-toolbar = "*"
 mysqlclient = "*"
 stripe = "*"
+django-scheduler = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true

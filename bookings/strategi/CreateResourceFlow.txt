@@ -1,0 +1,23 @@
+Här är ett övergripande flöde för hur det kan implementeras:
+
+Resursskapande formulär: När en användare vill skapa en ny resurs presenteras de med ett formulär där de kan ange resursens namn, beskrivning, 
+typ, pris etc.
+
+Tillgänglighet: Användaren presenteras sedan med en kalendervy (från Django Scheduler eller en liknande lösning) där de kan välja specifika datum 
+och tider när resursen är tillgänglig.
+
+Bekräftelse: Efter att ha valt datumen och tiderna klickar användaren på "Spara" eller "Bekräfta".
+
+Skapa poster: När användaren bekräftar skapas den nya resursen i Resource-modellen. Samtidigt skapas även de
+ tillhörande Availability-posterna baserat på de valda datumen och tiderna.
+
+Visualisering för användare: Efter att ha skapat resursen kan användaren se en översikt över resursens tillgänglighet.
+Vid behov kan användaren sedan redigera tillgängligheten direkt via kalendervyn.
+
+
+Implementering
+För att detta ska fungera smidigt kan det vara en bra idé att använda Django-formulär (forms.py) för att hantera
+inmatningen och valideringen. Med hjälp av formulär kan du enkelt koppla ihop frontend (HTML, JavaScript, etc.) med din backend-logik.
+
+För kalendervyn specifikt kommer du antagligen att behöva använda lite JavaScript för att göra upplevelsen dynamisk
+ och användarvänlig. Django Scheduler (eller liknande lösningar) bör erbjuda verktyg och exempel för hur detta kan genomföras.

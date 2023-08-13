@@ -1,28 +1,43 @@
 from django.db import models, transaction
+from django.conf import settings
 from django.contrib.auth.models import User
 
 class Resource(models.Model):
     """
-    Model for a bookable resource.
+    Model for a bookable resource, this is the main model for this app which the user (out client)
+    will be promted to create and manage. The resource can be a room, equipment, event, or anything else.
+    In our case it will be Håkans different tourist activities.
+    
     """
     TYPE_CHOICES = [
         ('room', 'Room'),
         ('equipment', 'Equipment'),
+        ('event', 'Event'),
+        ('other', 'Other')
         # Add more choices if necessary
     ]
 
     name = models.CharField(max_length=255, verbose_name="Name")
     description = models.TextField(verbose_name="Description")
     type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='room', verbose_name="Type")
-    availability = models.TextField(blank=True, null=True, verbose_name="Availability")
-    duration = models.IntegerField(verbose_name="Duration")
     price = models.IntegerField(verbose_name="Price")
     currency = models.CharField(max_length=50, default='SEK', verbose_name="Currency")
 
     def __str__(self):
         return self.name
 
+class Availability(models.Model):
+    """
+    Model to represent the availability of a resource. Every resource can have multiple availabilities, which 
+    represent the time slots when the resource is available for booking.
+    """
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE, verbose_name="Resource")
+    start_time = models.DateTimeField(verbose_name="Start Time")
+    end_time = models.DateTimeField(verbose_name="End Time")
 
+    def __str__(self):
+        return f"{self.resource.name} - {self.start_time} to {self.end_time}"
+    
 class Booking(models.Model):
     """
     Model to handle bookings.
@@ -43,11 +58,6 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.resource} - {self.start_time} to {self.end_time}"
-
-
-from django.db import models
-from django.conf import settings
-from .models import Booking
 
 
 class Payment(models.Model):
@@ -92,6 +102,7 @@ class Payment(models.Model):
             self.status = 'failed'
             self.save()
             return False
+        
     def refund(self, amount=None):
         import stripe
         stripe.api_key = 'YOUR_STRIPE_SECRET_KEY'
