@@ -4,11 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
-django-debug-toolbar = "*"
-mysqlclient = "*"
-stripe = "*"
+django = "==4.2.4"
+django-debug-toolbar = "==4.2.0"
+mysqlclient = "==2.2.0"
+stripe = "==5.5.0"
 django-scheduler = "*"
+asgiref = "==3.7.2"
+certifi = "==2023.7.22"
+charset-normalizer = "==3.2.0"
+idna = "==3.4"
+requests = "==2.31.0"
+sqlparse = "==0.4.4"
+typing-extensions = "==4.7.1"
+tzdata = "==2023.3"
+urllib3 = "==2.0.4"
+schedule = "*"
 
 [dev-packages]
 

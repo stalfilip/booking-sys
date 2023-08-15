@@ -1,6 +1,7 @@
 from django.db import models, transaction
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class Resource(models.Model):
     """
@@ -21,8 +22,15 @@ class Resource(models.Model):
     description = models.TextField(verbose_name="Description")
     type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='room', verbose_name="Type")
     price = models.IntegerField(verbose_name="Price")
+    min_capacity = models.IntegerField(verbose_name="Minimum Capacity", default=2)
+    max_capacity = models.IntegerField(verbose_name="Maximum Capacity", default=8)
     currency = models.CharField(max_length=50, default='SEK', verbose_name="Currency")
 
+    def clean(self):
+    # Ensure that min_capacity is always less than or equal to max_capacity
+        if self.min_capacity > self.max_capacity:
+            raise ValidationError("Minimum capacity should not exceed maximum capacity")
+    
     def __str__(self):
         return self.name
 
@@ -30,9 +38,11 @@ class Availability(models.Model):
     """
     Model to represent the availability of a resource. Every resource can have multiple availabilities, which 
     represent the time slots when the resource is available for booking.
+
     """
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE, verbose_name="Resource")
     start_time = models.DateTimeField(verbose_name="Start Time")
+    available_slots = models.IntegerField(verbose_name="Available Slots", default=0)
     end_time = models.DateTimeField(verbose_name="End Time")
 
     def __str__(self):
