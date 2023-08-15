@@ -3,6 +3,9 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+
+
+
 class Resource(models.Model):
     """
     Model for a bookable resource, this is the main model for this app which the user (out client)
@@ -25,6 +28,8 @@ class Resource(models.Model):
     min_capacity = models.IntegerField(verbose_name="Minimum Capacity", default=2)
     max_capacity = models.IntegerField(verbose_name="Maximum Capacity", default=8)
     currency = models.CharField(max_length=50, default='SEK', verbose_name="Currency")
+    duration_hours = models.FloatField(default=1.0, verbose_name="Duration in Hours")
+
 
     def clean(self):
     # Ensure that min_capacity is always less than or equal to max_capacity
@@ -48,6 +53,23 @@ class Availability(models.Model):
     def __str__(self):
         return f"{self.resource.name} - {self.start_time} to {self.end_time}"
     
+class ResourcePermission(models.Model):
+    """
+    Model to handle permissions for resources. This is a many-to-many relationship between users and resources.
+    Which is particularly useful for our case, since we want to allow users to share their resources with other users.
+    This is something Håkan specifically requested, so that he can share his resources with other similar businesses, and they can do the
+    same with him. This is a great way to increase the number of bookings for everyone involved. Which also will increase the
+    total revenue for us since he will now be asking his friends to use our app as well.
+
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
+    granted = models.DateTimeField(auto_now_add=True)  # För att spåra när tillståndet gavs.
+
+    class Meta:
+        unique_together = ['user', 'resource']
+
+
 class Booking(models.Model):
     """
     Model to handle bookings.
@@ -64,12 +86,26 @@ class Booking(models.Model):
     start_time = models.DateTimeField(verbose_name="Start Time")
     end_time = models.DateTimeField(verbose_name="End Time")
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='scheduled', verbose_name="Status")
+    slots_booked = models.IntegerField(verbose_name="Slots Booked", default=1)
     comments = models.TextField(blank=True, null=True, verbose_name="Comments")
 
     def __str__(self):
         return f"{self.user} - {self.resource} - {self.start_time} to {self.end_time}"
 
+class BookingParticipant(models.Model):
+    """
+    Model to store individual participants for a booking.
+    """
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE, verbose_name="Booking")
+    name = models.CharField(max_length=255, verbose_name="Name")
+    email = models.EmailField(null=True, blank=True, verbose_name="Email")
+    phone = models.CharField(max_length=15, null=True, blank=True, verbose_name="Phone Number")
+    special_requests = models.TextField(null=True, blank=True, verbose_name="Special Requests")
 
+    def __str__(self):
+        return self.name
+ 
+    
 class Payment(models.Model):
     PAYMENT_STATUS_CHOICES = [
         ('pending', 'Pending'),
