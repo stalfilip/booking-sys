@@ -4,16 +4,22 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+asgiref = "*"
+certifi = "*"
+charset-normalizer = "*"
 django = "*"
 django-debug-toolbar = "*"
+idna = "*"
 mysqlclient = "*"
+requests = "*"
+sqlparse = "*"
 stripe = "*"
-django-scheduler = "*"
+typing-extensions = "*"
+tzdata = "*"
+urllib3 = "*"
+schedule = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
-
-[pipenv]
-allow_prereleases = true
+python_version = "3.11"
