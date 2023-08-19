@@ -1,20 +1,11 @@
-Jag använder VC Code för text editor.
+Såhär sätter du upp ditt venv.
 
-Se till att köra: pip install -r requirements.txt för att ladda ner alla dependencies.
-
-Förslagsvis kör du 'pipenv install ..' istället för att få ner till till en virtuell env (Praxis när man jobbar inom Djanog och Frontend, tydligen.. )
-
-Bra video för att lära sig både om virituella env och grunderna inom Django är: https://www.youtube.com/watch?v=rHux0gMZ3Eg
-Jag rekommender att kolla hela, och sedan också ladda ner DeBug programmet som han pratar om i slutet, verkligen bra.
-
-När man kan det kan det vara lämpligt att läsa på lite om HTML och JS och likande. Resten går att köra genom GPT vilket
-löser typ alla problem. 
-
-Uttöver det måste du ha en fungerande MySQL server körandes på port: 3306 (localhost) med en databas som heter 'bookings' och en användare som heter 'ErkFil' med lösenord 'ErkFil'.
-
-När du har det och du ser att den fungerar vill du migrera databasen med: 'python manage.py migrate' och sedan köra 'python manage.py runserver' för att starta servern och 
-<<<<<<< HEAD
-samtidigt skapa korrekt  tables i databasen. För att lägga till lite sampledata kan du köra 'source Populate.sql' när du är inloggad i MySQL servern och har bookings databasen vald.
-
-
-
+1. Kör "pip install pipenv" i cmd.
+2. Gå till önskad mapp, klona repot" git clone https://github.com/stalfilip/booking-sys.git"
+3. I repot finns 2 viktiga filer, pipfile & pipfile.lock. Dessa innehåler all information om vilket venv vi kör.
+    Dessa används för att ladda ner alla dependencies automatiskt.
+4. Kör "pipenv shell".
+5. Kör "pipenv sync", nu laddas alla dependences ner till ditt venv.
+6. Kör "pipenv --venv", och du får nu en sökväg: path.
+7. Gå in i VS Code och välj intepreter, lägg till din path/scripts/python.exe (alternativt stället där din python i din venv körs)
+8. Klart! 
