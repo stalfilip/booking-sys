@@ -29,6 +29,7 @@ class Resource(models.Model):
     max_capacity = models.IntegerField(verbose_name="Maximum Capacity", default=8)
     currency = models.CharField(max_length=50, default='SEK', verbose_name="Currency")
     duration_hours = models.FloatField(default=1.0, verbose_name="Duration in Hours")
+    custom_attributes = models.JSONField(default=dict, blank=True)
 
 
     def clean(self):
@@ -93,17 +94,11 @@ class Booking(models.Model):
         return f"{self.user} - {self.resource} - {self.start_time} to {self.end_time}"
 
 class BookingParticipant(models.Model):
-    """
-    Model to store individual participants for a booking.
-    """
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE, verbose_name="Booking")
-    name = models.CharField(max_length=255, verbose_name="Name")
-    email = models.EmailField(null=True, blank=True, verbose_name="Email")
-    phone = models.CharField(max_length=15, null=True, blank=True, verbose_name="Phone Number")
-    special_requests = models.TextField(null=True, blank=True, verbose_name="Special Requests")
+    custom_data = models.JSONField(default=dict, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.custom_data.get('name', 'Unknown Participant')
  
     
 class Payment(models.Model):
