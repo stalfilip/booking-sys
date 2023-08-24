@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def say_hello(request):
@@ -11,6 +13,6 @@ def homepage(request):
 from django.shortcuts import render
 from .models import Customer
 
-def customers_view(request):
-    customers = Customer.objects.all()
-    return render(request, 'customers.html', {'customers': customers})
+def users_view(request):
+    users = User.objects.all()
+    return render(request, 'users.html', {'users': users})

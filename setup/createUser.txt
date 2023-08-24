@@ -1,0 +1,12 @@
+kör 'python manage.py shell' & kör sedan koden nedan.
+
+from django.contrib.auth.models import User
+
+# Skapa en ny användare
+user = User.objects.create_user('usrname', password='pwd')
+
+# Om du vill göra användaren till en admin (superuser)
+# user = User.objects.create_superuser('filip', email='example@example.com', password='filip')
+
+# Spara användaren till databasen
+user.save()

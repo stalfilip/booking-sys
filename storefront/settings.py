@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'playground',
     'bookings',
     'debug_toolbar',
+    'django.contrib.sessions',
 ]
 
 INTERNAL_IPS = [
@@ -59,6 +60,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
 
 ROOT_URLCONF = 'storefront.urls'
 

@@ -12,14 +12,16 @@
 
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <div class="container">
                 <h1>Mitt företag</h1>
-                <ul>
+                <ul class="nav-list">
                     <li><a href="#">Hem</a></li>
                     <li><a href="{% url 'say_hello' %}">Om oss</a></li>
-                    <li><a href="#">Tjänster</a></li>
-                    <li><a href="{% url 'customers_view' %}">Kunder</a></li>
+                    <li><a href="{% url 'add_resource' %}">Lägg till resurs</a></li>
+                    <li><a href="{% url 'users_view' %}">Visa användare</a></li>
+                    <li><a href="{% url 'login' %}" class="login-btn">Logga in</a></li>
+                    <li><a href="{% url 'logout' %}" class="logout-btn">Logga ut</a></li>
                 </ul>
             </div>
         </nav>
@@ -41,3 +43,4 @@
 </body>
 
 </html>
+

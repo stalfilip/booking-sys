@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Användare</title>
+    <link rel="stylesheet" href="{% static 'css/stylesCustomer.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Användare</h1>
+        <ul class="customer-list">
+            {% for user in users %}
+                <li class="customer-item">
+                    <span class="customer-name">{{ user.first_name }} {{ user.last_name }}</span> 
+                    - <span class="customer-username">{{ user.username }}</span>
+                    - <span class="customer-email">{{ user.email }}</span>
+                    <!-- om du har ytterligare fält som du vill visa, kan du lägga till dem här -->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+
+
