@@ -1,0 +1,9 @@
+För att kunna köra hemsidan korrekt måste du fixa ett super user konto hos django. Detta gör du genom att köra följande 
+kommando i terminalen:
+
+python manage.py createsuperuser
+
+Följ instruktionerna i terminalen för att skapa ett konto. När du har gjort det kan du logga in med det på hemsidan.
+Det som har hänt är att du har skapat ett adminkonto i databasen som django använder för att lagra användare. Tanken är 
+att vi kommer skapa admin konto för alla som skall kunna skapa resurser på hemsidan. dvs alla som köper vår tjänst.
+

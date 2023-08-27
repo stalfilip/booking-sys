@@ -22,7 +22,6 @@ from bookings import views as bookings_views
 urlpatterns = [
     path('', bookings_views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
-    path('playground/', include('playground.urls')),
     path('bookings/', include('bookings.urls')),
     path("__debug__/", include("debug_toolbar.urls")),
     path('accounts/', include('django.contrib.auth.urls')),

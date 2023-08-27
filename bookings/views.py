@@ -3,10 +3,15 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import ResourceForm
 from .models import Resource
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseForbidden
 
 def homepage(request):
     return render(request, 'homepage.html')
+
+def users_view(request):
+    users = User.objects.all()
+    return render(request, 'users.html', {'users': users})
 
 @login_required
 def add_resource(request):
