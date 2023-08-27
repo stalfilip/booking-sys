@@ -7,9 +7,6 @@ from django.contrib.auth.models import User
 def say_hello(request):
     return render(request,'hello.html')
 
-def homepage(request):
-    return render(request, 'homepage.html')
-
 from django.shortcuts import render
 from .models import Customer
 

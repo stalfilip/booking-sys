@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 import debug_toolbar
-from playground import views as playground_views
+from bookings import views as bookings_views
 
 urlpatterns = [
-    path('', playground_views.homepage, name='homepage'),
+    path('', bookings_views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
     path('playground/', include('playground.urls')),
     path('bookings/', include('bookings.urls')),

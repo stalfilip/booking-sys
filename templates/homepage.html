@@ -16,12 +16,19 @@
             <div class="container">
                 <h1>Mitt företag</h1>
                 <ul class="nav-list">
-                    <li><a href="#">Hem</a></li>
-                    <li><a href="{% url 'say_hello' %}">Om oss</a></li>
-                    <li><a href="{% url 'add_resource' %}">Lägg till resurs</a></li>
+
+                    <li><a href="{% url 'all_resources' %}">Visa alla resurser</a></li>
+
+                    {% if user.is_authenticated and user.is_staff %}
+                        <li><a href="{% url 'add_resource' %}">Lägg till resurs</a></li>
+                        <li><span>Användare: {{ user.username }}</span></li>
+                        <li><a href="{% url 'logga_ut' %}">Logga ut</a></li>
+                    {% else %}
+                        <li><a href="{% url 'custom_login' %}">Logga in</a></li>
+                    {% endif %}
+                    
                     <li><a href="{% url 'users_view' %}">Visa användare</a></li>
-                    <li><a href="{% url 'login' %}" class="login-btn">Logga in</a></li>
-                    <li><a href="{% url 'logout' %}" class="logout-btn">Logga ut</a></li>
+
                 </ul>
             </div>
         </nav>
